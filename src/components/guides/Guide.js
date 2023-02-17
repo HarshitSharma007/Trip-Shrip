@@ -23,7 +23,7 @@ function Guide() {
 
         let diffDays = parseInt((d2-d1) / (1000 * 60 * 60 * 24), 10);
 
-        let collectionName = city + "-guides";
+        let collectionName = city.toLowerCase() + "-guides";
         let guidesSnapshot = await getDocs(collection(db, collectionName));
         let guidesList =  guidesSnapshot.docs.map(doc => doc.data());
 
@@ -71,6 +71,7 @@ function Guide() {
             <div style={{height: "60vh", width:'100vw', backgroundImage : "", backgroundSize: '100%', backgroundPosition : 'center center',  display : 'flex' , alignItems : 'center'}}>
                 <div style={{width:'30vw', height : '30vh', backgroundColor : 'white' ,borderRadius : '12px' , border : '2px solid black', marginLeft : '15vw', display : 'flex' , flexDirection : 'column' , alignItems : 'center'}}>
                     <h3> Get your guides in {city} </h3>
+                    <label> Start Date </label>
                     <input 
                         style={{width : "90%"}} 
                         name='fromD' 
@@ -80,6 +81,7 @@ function Guide() {
                         onChange={(e) => {setFromDate(e.target.value);}} 
                         min={`${todayDate.getFullYear()}-${todayDate.getMonth()+1}-${todayDate.getDate()}`}
                     /> 
+                    <label>Till Date </label>
                     <input 
                         style={{width : "90%"}} 
                         name='untilD' 
